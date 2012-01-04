@@ -60,11 +60,11 @@ class TestBoard(unittest.TestCase):
   def test_can_retrieve_space_contents(self):
     self.assertEqual('', self.board.space_contents(0), "We haven't set the space yet")
     self.board.make_move(0, self.board.O)
-    self.assertEqual('O', self.board.space_contents(0), "After we made a move")
+    self.assertEqual(self.board.O, self.board.space_contents(0), "After we made a move")
   
   def test_can_retrieve_the_board_in_dict_form(self):
     self.board.make_move(4, self.board.X)
     self.board.make_move(2, self.board.O)
-    self.assertEqual({4: "X", 2: "O"}, self.board.to_dict())
+    self.assertEqual({4: self.board.X, 2: self.board.O}, self.board.to_dict())
     self.board.make_move(6, self.board.X)
-    self.assertEqual({4: "X", 2: "O", 6: "X"}, self.board.to_dict())
+    self.assertEqual({4: self.board.X, 2: self.board.O, 6: self.board.X}, self.board.to_dict())
