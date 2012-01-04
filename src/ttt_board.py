@@ -36,6 +36,6 @@ class TTTBoard():
   
   def space_contents(self, location):
     return self._board[location]
-    
-  def num_moves_made(self):
-    return len(self._board)
+  
+  def to_dict(self):
+    return self._board.copy()

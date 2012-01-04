@@ -4,9 +4,6 @@ from src.ttt_board import TTTBoard
 class TestBoard(unittest.TestCase):
   def setUp(self):
     self.board = TTTBoard(9)
-
-  def test_name(self):
-    self.assertEqual('TTTBoard', TTTBoard.__name__)
   
   def test_has_an_X_attr(self):
     self.assertEqual('X', self.board.X)
@@ -15,13 +12,13 @@ class TestBoard(unittest.TestCase):
     self.assertEqual('O', self.board.O)
 
   def test_has_an_empty_board_by_default(self):
-    self.assertEqual(0, self.board.num_moves_made())
+    self.assertEqual(0, len(self.board.to_dict()))
   
   def test_can_make_moves_on_the_board(self):
     self.board.make_move(1, self.board.X)
-    self.assertEqual(1, self.board.num_moves_made())
+    self.assertEqual({1: self.board.X}, self.board.to_dict())
     self.board.make_move(0, self.board.O)
-    self.assertEqual(2, self.board.num_moves_made())
+    self.assertEqual({1: self.board.X, 0: self.board.O}, self.board.to_dict())
   
   def test_can_only_make_move_with_X_or_O(self):
     try:
@@ -64,3 +61,10 @@ class TestBoard(unittest.TestCase):
     self.assertEqual('', self.board.space_contents(0), "We haven't set the space yet")
     self.board.make_move(0, self.board.O)
     self.assertEqual('O', self.board.space_contents(0), "After we made a move")
+  
+  def test_can_retrieve_the_board_in_dict_form(self):
+    self.board.make_move(4, self.board.X)
+    self.board.make_move(2, self.board.O)
+    self.assertEqual({4: "X", 2: "O"}, self.board.to_dict())
+    self.board.make_move(6, self.board.X)
+    self.assertEqual({4: "X", 2: "O", 6: "X"}, self.board.to_dict())
