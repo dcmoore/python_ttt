@@ -1,12 +1,10 @@
-from collections import defaultdict
-class TTTBoard():
+from src.board import Board
+
+class TTTBoard(Board):
   X = "X"
   O = "O"
-  def __init__(self, num_spaces): 
-    self._board = defaultdict(str)
-    self._num_spaces = num_spaces
   
-  class BoardError(RuntimeError):
+  class TTTBoardError(RuntimeError):
     pass
   
   def validate_move(fn):
@@ -19,23 +17,17 @@ class TTTBoard():
     return func
     
   def validate_location(self, location):
-    if location >= self._num_spaces or location < 0:
-      raise self.BoardError("Invalid Move")
+    if location >= self.num_spaces or location < 0:
+      raise self.TTTBoardError("Invalid Move")
     
   def validate_team(self, team):
     if team != self.X and team != self.O:
-      raise self.BoardError("Invalid Team")
+      raise self.TTTBoardError("Invalid Team")
   
   def validate_empty_space(self, location):
     if self._board[location] != '':
-      raise self.BoardError("Space '{0}' is already full".format(location))
+      raise self.TTTBoardError("Space '{0}' is already full".format(location))
   
   @validate_move
-  def make_move(self, location, team):
-    self._board[location] = team
-  
-  def space_contents(self, location):
-    return self._board[location]
-  
-  def to_dict(self):
-    return self._board.copy()
+  def fill_space(self, location, team):
+    super().fill_space(location, team)
