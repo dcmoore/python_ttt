@@ -1,8 +1,7 @@
 from src.board import Board
 
 class TTTBoard(Board):
-  X = "X"
-  O = "O"
+  valid_teams_list = ['X', 'O']
   
   class TTTBoardError(RuntimeError):
     pass
@@ -21,7 +20,7 @@ class TTTBoard(Board):
       raise self.TTTBoardError("Invalid Move")
     
   def validate_team(self, team):
-    if team != self.X and team != self.O:
+    if team not in self.valid_teams_list:
       raise self.TTTBoardError("Invalid Team")
   
   def validate_empty_space(self, location):

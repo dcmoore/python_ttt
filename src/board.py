@@ -2,6 +2,7 @@ from collections import defaultdict
 
 class Board():
   num_spaces = 0
+  valid_teams_list = []
   
   def __init__(self, num_spaces):
     self._board = defaultdict(str)
