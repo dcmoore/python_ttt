@@ -11,8 +11,12 @@ class Board():
   def fill_space(self, location, team):
     self._board[location] = team
   
+  def erase_space(self, location):
+    if location in self._board: self._board.pop(location)
+  
   def space_contents(self, location):
-    return self._board[location]
+    if location in self._board: return self._board[location]
+    return ''
   
   def num_full_spaces(self):
     return len(self._board)
