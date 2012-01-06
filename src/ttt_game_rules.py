@@ -1,4 +1,4 @@
-class TTTRules():
+class TTTGameRules():
   def __init__(self, win_sets):
     self._win_sets = win_sets
     

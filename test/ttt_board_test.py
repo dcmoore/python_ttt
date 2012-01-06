@@ -1,7 +1,7 @@
 import unittest
 from src.ttt_board import TTTBoard
 
-class TestBoard(unittest.TestCase):
+class TestTTTBoard(unittest.TestCase):
   def setUp(self):
     self.board = TTTBoard(9)
     self.X = self.board.valid_teams_list[0]
