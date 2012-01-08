@@ -24,7 +24,7 @@ class TTTBoard(Board):
       raise self.TTTBoardError("Invalid Team")
   
   def validate_empty_space(self, location):
-    if self._board[location] != '':
+    if self._board[location] != self.EMPTY_SPACE:
       raise self.TTTBoardError("Space '{0}' is already full".format(location))
   
   @validate_move

@@ -6,6 +6,9 @@ class TestTTTBoard(unittest.TestCase):
     self.board = TTTBoard(9)
     self.X = self.board.valid_teams_list[0]
     self.O = self.board.valid_teams_list[1]
+    
+  def test_an_empty_space_is_represented_by_an_empty_string(self):
+    self.assertEqual('', self.board.EMPTY_SPACE)
   
   def test_by_default_there_are_only_two_teams_allowed_to_fill_spaces_on_this_board(self):
     self.assertTrue('X' in self.board.valid_teams_list)
@@ -86,3 +89,8 @@ class TestTTTBoard(unittest.TestCase):
     self.assertEqual({4: self.X, 2: self.O}, self.board.to_dict())
     self.board.fill_space(6, self.X)
     self.assertEqual({4: self.X, 2: self.O, 6: self.X}, self.board.to_dict())
+  
+  def test_returns_a_list_of_all_empty_spaces(self):
+    self.board.fill_space(4, self.X)
+    self.board.fill_space(2, self.O)
+    self.assertEqual([0,1,3,5,6,7,8], self.board.empty_spaces())
