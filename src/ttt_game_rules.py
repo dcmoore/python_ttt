@@ -1,4 +1,6 @@
-class TTTGameRules():
+from src.rules import Rules
+
+class TTTGameRules(Rules):
   def __init__(self, win_sets):
     self._win_sets = win_sets
     
@@ -25,3 +27,6 @@ class TTTGameRules():
     if not self.is_game_over(board):
       num_teams = len(board.valid_teams_list)
       return board.valid_teams_list[num_moves % num_teams]
+  
+  def possible_moves(self, board):
+    return board.empty_spaces()

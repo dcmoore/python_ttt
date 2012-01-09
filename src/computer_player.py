@@ -6,7 +6,7 @@ class ComputerPlayer():
           return 0
         return -1
 
-      for space in board.empty_spaces():
+      for space in rules.possible_moves(board):
         board.fill_space(space, rules.active_team(board))
         minimax_vals_for_depth[space] = -1 * _minimax(current_depth+1, {})
         board.erase_space(space)

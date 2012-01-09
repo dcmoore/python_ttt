@@ -40,11 +40,17 @@ class TestTTTGameRules(unittest.TestCase):
     self.assertEqual(self.X, self.rules.active_team(self.board))
 
   def test_X_and_O_alternate_turns(self):
-    self.board.set_board({1: 'X'})
+    self.board.set_board({1: self.X})
     self.assertEqual(self.O, self.rules.active_team(self.board))
-    self.board.set_board({1: 'X', 5: 'O'})
+    self.board.set_board({1: self.X, 5: self.O})
     self.assertEqual(self.X, self.rules.active_team(self.board))  
     
   def test_there_is_no_active_team_if_the_game_is_over(self):
     self.board.set_board({0: self.X, 1: self.O, 2: self.X, 3: self.O, 4: self.X, 5: self.O, 6: self.X, 7: self.O, 8: self.X})
     self.assertEqual(None, self.rules.active_team(self.board))
+  
+  def test_knows_all_available_moves(self):
+    self.board.set_board({1: self.X})
+    self.assertEqual([0,2,3,4,5,6,7,8], self.rules.possible_moves(self.board))
+    self.board.set_board({1: self.X, 5: self.O})
+    self.assertEqual([0,2,3,4,6,7,8], self.rules.possible_moves(self.board))
