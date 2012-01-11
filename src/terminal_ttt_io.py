@@ -7,6 +7,12 @@ class TerminalTTTIO(TTTIO):
   def get_next_move(self):
     return input("Enter your next move: ")
   
+  def invalid_team(self):
+    print("Invalid Team.")
+  
+  def invalid_move(self, message):
+    print(message)
+  
   def _board_to_str(self, ttt_board):
     def _space_to_str(space_number):
       space = ttt_board.space_contents(space_number)

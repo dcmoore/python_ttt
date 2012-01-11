@@ -71,6 +71,14 @@ class TestTTTBoard(unittest.TestCase):
       self.assertRegex(err.args[0], 'Invalid Move')
     else:
       self.fail('BoardError not thrown when it should be')
+    
+    try:
+      self.board.fill_space('A', self.X)
+    except Exception as err:
+      self.assertEqual('TTTBoardError', err.__class__.__name__)
+      self.assertRegex(err.args[0], 'Invalid Move')
+    else:
+      self.fail('BoardError not thrown when it should be')
   
   def test_can_only_fill_an_empty_space(self):
     space = 1

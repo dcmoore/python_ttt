@@ -23,6 +23,8 @@ class TTTBoard(Board):
     return func
     
   def validate_location(self, location):
+    if not type(location) is int:
+      raise self.TTTBoardError("Invalid Move")
     if location >= self.num_spaces or location < 0:
       raise self.TTTBoardError("Invalid Move")
     

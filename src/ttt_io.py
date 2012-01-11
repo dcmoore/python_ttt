@@ -5,6 +5,12 @@ class TTTIO():
   def get_next_move(self):
     pass
   
+  def invalid_team(self):
+    pass
+  
+  def invalid_move(self):
+    pass
+  
   def show_board(self, ttt_board):
     pass
     
