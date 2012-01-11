@@ -22,3 +22,6 @@ class TerminalTTTIO(TTTIO):
 
   def get_next_move(self):
     return input("Enter your next move: ")
+  
+  def show_winner(self, winning_team):
+    print("Congratulations team: {0}! You won!".format(winning_team))

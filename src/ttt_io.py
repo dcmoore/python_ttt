@@ -4,3 +4,6 @@ class TTTIO():
   
   def get_next_move(self):
     pass
+    
+  def show_winner(self, winning_team):
+    pass
