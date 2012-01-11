@@ -6,6 +6,10 @@ class TTTBoard(Board):
   class TTTBoardError(RuntimeError):
     pass
   
+  def __init__(self, num_spaces):
+    if num_spaces == 9: super().__init__(num_spaces)
+    if num_spaces != 9: raise self.TTTBoardError("A TTTBoard can only be initialized with 9 spaces")
+  
   def validate_move(fn):
     def func(*args):
       self, location, team = args

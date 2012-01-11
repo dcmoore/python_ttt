@@ -6,6 +6,15 @@ class TestTTTBoard(unittest.TestCase):
     self.board = TTTBoard(9)
     self.X = self.board.valid_teams_list[0]
     self.O = self.board.valid_teams_list[1]
+  
+  def test_a_ttt_board_can_only_have_9_spaces(self):
+    try:
+      self.board = TTTBoard(8)
+    except Exception as err:
+      self.assertEqual('TTTBoardError', err.__class__.__name__)
+      self.assertRegex(err.args[0], 'A TTTBoard can only be initialized with 9 spaces')
+    else:
+      self.fail('BoardError not thrown when it should be')
     
   def test_an_empty_space_is_represented_by_an_empty_string(self):
     self.assertEqual('', self.board.EMPTY_SPACE)
