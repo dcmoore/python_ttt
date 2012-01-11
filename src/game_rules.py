@@ -1,4 +1,4 @@
-class Rules():
+class GameRules():
   def is_game_over(self, board):
     pass
   

@@ -1,6 +1,6 @@
-from src.rules import Rules
+from src.game_rules import GameRules
 
-class TTTGameRules(Rules):
+class TTTGameRules(GameRules):
   def __init__(self, win_sets):
     self._win_sets = win_sets
     
