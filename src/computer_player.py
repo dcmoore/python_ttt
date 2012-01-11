@@ -1,6 +1,6 @@
 class ComputerPlayer():
   def get_best_move(self, board, rules):
-    max_depth = 6
+    max_depth = 7
     def _minimax(current_depth, minimax_vals_for_depth):
       if current_depth >= max_depth: return 0
       if rules.is_game_over(board):
