@@ -1,6 +1,12 @@
 from src.ttt_io import TTTIO
 
 class TerminalTTTIO(TTTIO):
+  def get_human_team(self, board):
+    return input("Enter your team {0}: ".format(board.valid_teams_list))
+    
+  def get_next_move(self):
+    return input("Enter your next move: ")
+  
   def _board_to_str(self, ttt_board):
     def _space_to_str(space_number):
       space = ttt_board.space_contents(space_number)
@@ -19,9 +25,12 @@ class TerminalTTTIO(TTTIO):
   
   def show_board(self, ttt_board):
     print(self._board_to_str(ttt_board))
-
-  def get_next_move(self):
-    return input("Enter your next move: ")
+    
+  def thinking(self):
+    print("Please Wait. Thinking of next move...")
   
-  def show_winner(self, winning_team):
-    print("Congratulations team: {0}! You won!".format(winning_team))
+  def tie_game(self):
+    print('Nobody wins... Or as your mother would say, "Everybody Wins!"')
+  
+  def show_winner(self, winner):
+    print("Congratulations {0}! You won!".format(winner))
