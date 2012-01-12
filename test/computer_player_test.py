@@ -27,6 +27,14 @@ class TestComputerPlayer(unittest.TestCase):
     self.board.set_board({0: self.X, 4: self.O, 1: self.X})
     self.assertEqual(2, self.comp_player.get_best_move(self.board, self.ttt_rules))
   
+  def test_wont_set_self_up_for_trap(self):
+    self.board.set_board({0: self.X})
+    move = self.comp_player.get_best_move(self.board, self.ttt_rules)
+    self.assertNotEqual(1, move)
+    self.assertNotEqual(3, move)
+    self.assertNotEqual(5, move)
+    self.assertNotEqual(7, move)
+  
   def test_kiddie_corner_trap(self):
     self.board.set_board({0: self.X, 4: self.O, 8: self.X})
     move = self.comp_player.get_best_move(self.board, self.ttt_rules)
@@ -55,5 +63,3 @@ class TestComputerPlayer(unittest.TestCase):
     self.assertNotEqual(3, move)
     self.assertNotEqual(4, move)
     self.assertNotEqual(8, move)
-
-# TODO - make an integration test where all game possibilities are tested out
