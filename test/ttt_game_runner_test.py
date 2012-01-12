@@ -58,7 +58,7 @@ class TestTTTGameRunner(unittest.TestCase):
     self.assertEqual(1, self.runner.io.im_called_count)
     self.assertEqual('X', self.runner.board.space_contents(1))
   
-  def test_human_and_computer_players_take_turns(self):
+  def test_human_and_computer_players_alternate_turns(self):
     self.runner.human_team = 'X'
     self.runner._take_turn('X')
     self.runner._take_turn('O')
