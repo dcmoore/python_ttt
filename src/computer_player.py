@@ -1,5 +1,10 @@
 class ComputerPlayer():
-  def get_best_move(self, board, rules):
+  def random_move(self, low, high, rules, board):
+    import random
+    move = random.randint(low, high)
+    return rules.possible_moves(board)[move]
+  
+  def get_next_move(self, board, rules):
     max_depth = 7
     def _minimax(current_depth, minimax_vals_for_depth):
       if current_depth >= max_depth: return 0
@@ -17,8 +22,6 @@ class ComputerPlayer():
       if current_depth == 0:
         return best_move
       return minimax_vals_for_depth[best_move]
-    
-    if board.num_full_spaces() == 0:
-      import random
-      return random.randint(0, board.num_spaces-1)
+      
+    if board.num_full_spaces() == 0: return self.random_move(0, len(rules.possible_moves(board))-1, rules, board)
     return _minimax(0, {})

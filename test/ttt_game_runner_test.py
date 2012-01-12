@@ -37,7 +37,7 @@ class TestAI():
     self.test_ai_moves = [3,4]
     self.gbm_called_count = 0
     
-  def get_best_move(self, board, rules):
+  def get_next_move(self, board, rules):
     move = self.test_ai_moves[self.gbm_called_count]
     self.gbm_called_count += 1
     return move

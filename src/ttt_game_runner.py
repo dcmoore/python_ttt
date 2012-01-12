@@ -31,7 +31,7 @@ class TTTGameRunner():
       self._make_valid_move()
     if current_team != self.human_team:
       self.io.thinking()
-      move_location = self.ai.get_best_move(self.board, self.rules)
+      move_location = self.ai.get_next_move(self.board, self.rules)
       self.board.fill_space(move_location, current_team)
 
   def run_game(self):

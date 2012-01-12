@@ -21,15 +21,15 @@ class TestComputerPlayer(unittest.TestCase):
   
   def test_makes_a_winning_move_if_it_is_available(self):
     self.board.set_board({0: self.X, 2: self.O, 3: self.O, 4: self.O, 6: self.X, 8: self.X})
-    self.assertEqual(7, self.comp_player.get_best_move(self.board, self.ttt_rules))
+    self.assertEqual(7, self.comp_player.get_next_move(self.board, self.ttt_rules))
   
   def test_blocks_an_opponents_winning_move_if_a_winning_move_isnt_available(self):
     self.board.set_board({0: self.X, 4: self.O, 1: self.X})
-    self.assertEqual(2, self.comp_player.get_best_move(self.board, self.ttt_rules))
+    self.assertEqual(2, self.comp_player.get_next_move(self.board, self.ttt_rules))
   
   def test_wont_set_self_up_for_trap(self):
     self.board.set_board({0: self.X})
-    move = self.comp_player.get_best_move(self.board, self.ttt_rules)
+    move = self.comp_player.get_next_move(self.board, self.ttt_rules)
     self.assertNotEqual(1, move)
     self.assertNotEqual(3, move)
     self.assertNotEqual(5, move)
@@ -37,13 +37,13 @@ class TestComputerPlayer(unittest.TestCase):
   
   def test_kiddie_corner_trap(self):
     self.board.set_board({0: self.X, 4: self.O, 8: self.X})
-    move = self.comp_player.get_best_move(self.board, self.ttt_rules)
+    move = self.comp_player.get_next_move(self.board, self.ttt_rules)
     self.assertNotEqual(2, move)
     self.assertNotEqual(6, move)
   
   def test_triangle_trap(self):
     self.board.set_board({0: self.O, 4: self.X, 8: self.X})
-    move = self.comp_player.get_best_move(self.board, self.ttt_rules)
+    move = self.comp_player.get_next_move(self.board, self.ttt_rules)
     self.assertNotEqual(1, move)
     self.assertNotEqual(3, move)
     self.assertNotEqual(5, move)
@@ -51,15 +51,21 @@ class TestComputerPlayer(unittest.TestCase):
   
   def test_corner_trap(self):
     self.board.set_board({1: self.X, 4: self.O, 5: self.X})
-    move = self.comp_player.get_best_move(self.board, self.ttt_rules)
+    move = self.comp_player.get_next_move(self.board, self.ttt_rules)
     self.assertNotEqual(3, move)
     self.assertNotEqual(6, move)
     self.assertNotEqual(7, move)
   
   def test_disguised_corner_trap(self):
     self.board.set_board({5: self.X, 0: self.O, 7: self.X})
-    move = self.comp_player.get_best_move(self.board, self.ttt_rules)
+    move = self.comp_player.get_next_move(self.board, self.ttt_rules)
     self.assertNotEqual(1, move)
     self.assertNotEqual(3, move)
     self.assertNotEqual(4, move)
     self.assertNotEqual(8, move)
+  
+  def test_makes_a_random_move_only_if_there_are_no_other_moves_on_the_board(self):
+    self.board.set_board({})
+    self.comp_player.random_move = lambda low, high, rules, board: 100
+    move = self.comp_player.get_next_move(self.board, self.ttt_rules)
+    self.assertEqual(100, move)
