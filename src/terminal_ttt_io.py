@@ -30,6 +30,7 @@ class TerminalTTTIO(TTTIO):
     return output
   
   def show_board(self, ttt_board):
+    print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n")
     print(self._board_to_str(ttt_board))
     
   def thinking(self):
