@@ -16,7 +16,7 @@ class TerminalTTTIO(TTTIO):
   def _board_to_str(self, ttt_board):
     def _space_to_str(space_number):
       space = ttt_board.space_contents(space_number)
-      if space == ttt_board.EMPTY_SPACE: return ' '
+      if space == ttt_board.EMPTY_SPACE: return '{0}'.format(space_number)
       return space
 
     output = "-------\n"
