@@ -1,8 +1,8 @@
 import unittest
 from src.ttt_game_runner import TTTGameRunner
-from src.terminal_ttt_io import TerminalTTTIO
+from src.ttt_io import TTTIO
 
-class TestIO(TerminalTTTIO):
+class TestIO(TTTIO):
   def __init__(self):
     self.test_team_inputs = ['Invalid', 'X']
     self.ght_called_count = 0
@@ -27,10 +27,6 @@ class TestIO(TerminalTTTIO):
     move = self.test_move_inputs[self.gnm_called_count]
     self.gnm_called_count += 1
     return move
-  def thinking(self):
-    pass
-  def show_board(self, board):
-    pass
   def show_winner(self, winner):
     self.sw_called_count += 1
   def tie_game(self):
