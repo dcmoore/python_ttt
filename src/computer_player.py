@@ -18,4 +18,7 @@ class ComputerPlayer():
         return best_move
       return minimax_vals_for_depth[best_move]
     
+    if board.num_full_spaces() == 0:
+      import random
+      return random.randint(0, board.num_spaces-1)
     return _minimax(0, {})
