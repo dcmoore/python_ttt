@@ -1,4 +1,5 @@
 from src.ttt_io import TTTIO
+import os
 
 class TerminalTTTIO(TTTIO):
   def get_human_team(self, board):
@@ -30,7 +31,7 @@ class TerminalTTTIO(TTTIO):
     return output
   
   def show_board(self, ttt_board):
-    print("\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n")
+    os.system('clear')
     print(self._board_to_str(ttt_board))
     
   def thinking(self):
