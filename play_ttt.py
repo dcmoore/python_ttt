@@ -1,5 +1,5 @@
-from src.ttt_game_runner import TTTGameRunner
-runner = TTTGameRunner()
-runner.run_game()
+from src.factory import Factory
+from src.game_loop import GameLoop
 
-# Note to self: Play game from command line with 'python3 ./play_ttt.py'
+[terminal_interactor, ordered_players, rules_engine] = Factory.stateless_objects()
+GameLoop().run(terminal_interactor, ordered_players, rules_engine)
